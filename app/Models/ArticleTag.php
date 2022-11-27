@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ArticleTag extends BaseModel
 {
-    // Start something amazing...
-    public function taggable
+    /**
+     * Polymorphic model relationship
+     */
+    public function taggable(): MorphTo
     {
-        return $this->morphTo()
+        return $this->morphTo();
     }
 }
