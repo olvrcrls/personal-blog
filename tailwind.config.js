@@ -1,25 +1,22 @@
-/** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  theme: {
-    /** Variable screens */
-    screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './vendor/laravel/jetstream/**/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*.vue',
+    ],
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-    colors: {
-      'primary': '#36454F',
-      'secondary': '#4B5F6D'
-    },
-    fontFamily: {
-      'sans': ['Oswald', 'sans-serif'],
-      'display': ['Oswald', 'sans-serif'],
-      'body': ['Oswald', 'sans-serif']
-    },
-    extend: {},
-  },
-  plugins: [],
-}
+
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+};
