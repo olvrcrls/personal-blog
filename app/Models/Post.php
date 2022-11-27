@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Base\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends BaseModel
 {
@@ -23,5 +24,14 @@ class Post extends BaseModel
     public function author(): BelongsTo
     {
         return $this->user();
+    }
+
+    /**
+     * Returns the tags related to the article
+     * @return MorphMany
+     */
+    public function taggable(): MorphMany
+    {
+        return $this->morphMany(ArticleTag::class, 'taggable');
     }
 }
