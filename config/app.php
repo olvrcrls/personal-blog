@@ -73,6 +73,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Timezone Display
+    |--------------------------------------------------------------------------
+    |
+    | All of the dates are stored in UTC by default and we will
+    | convert the time display into a specific timezone.
+    | Defaults to Asia/Manila
+    */
+    'timezone_display' => env('APP_TIMEZONE', 'Asia/Manila'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |
