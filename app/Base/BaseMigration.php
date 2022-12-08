@@ -4,6 +4,6 @@ namespace App\Base;
 
 use Illuminate\Database\Migrations\Migration;
 
-class BaseMigration extends Migration
+abstract class BaseMigration extends Migration
 {
 }

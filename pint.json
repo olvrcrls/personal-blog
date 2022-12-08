@@ -1,0 +1,22 @@
+{
+    "preset": "psr12",
+    "rules": {
+        "simplified_null_return": true,
+        "braces": true,
+        "new_with_braces": {
+            "anonymous_class": true,
+            "named_class": true
+        },
+        "array_indentation": true,
+        "align_multiline_comment": true,
+        "cast_spaces": true,
+        "clean_namespace": true,
+        "constant_case": true,
+        "elseif": true,
+        "single_line_comment_style": {
+            "comment_types": ["hash"]
+        },
+        "no_trailing_whitespace_in_comment": true,
+        "no_trailing_whitespace_in_string": true
+    }
+}

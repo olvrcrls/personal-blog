@@ -7,14 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BaseModel extends Model
+abstract class BaseModel extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Guarded properties for mass assignment
-     * @var array
+     *
+     * @var array<int, string>
      */
     protected $guarded = ['id'];
 
@@ -46,8 +52,8 @@ class BaseModel extends Model
 
     /**
      * Delete function with parameter to indicate force deletion.
-     * 
-     * @param bool $force
+     *
+     * @param  bool  $force
      * @return bool
      */
     public function delete(bool $force = false): bool
@@ -61,13 +67,13 @@ class BaseModel extends Model
     /**
      * Count function to indicate to include trashed models
      *
-     * @param bool $withTrashed
+     * @param  bool  $withTrashed
      * @return int
      */
     public function count(bool $withTrashed = false): int
     {
-        return $withTrashed ? parent::withTrashed()->count()
-            : parent::count();
+        return $withTrashed ? $this->withTrashed()->count()
+            : $this->count();
     }
 
     /**
@@ -79,8 +85,7 @@ class BaseModel extends Model
     public function getCreatedAtAttribute($value)
     {
         return Carbon::createFromTimestamp(strtotime($value))
-            ->timezone(config('app.timezone_display'))
-            ->toDateTimeString();
+            ->timezone(config('app.timezone_display'));
     }
 
     /**
@@ -96,14 +101,13 @@ class BaseModel extends Model
         }
 
         return Carbon::createFromTimestamp(strtotime($value))
-            ->timezone(config('app.timezone_display'))
-            ->toDateTimeString();
+            ->timezone(config('app.timezone_display'));
     }
 
     /**
      * Updating the accessor for the deleted_at column
      * to return config specific timezone.
-     * 
+     *
      * @return Carbon|void
      */
     public function getDeletedAtAttribute($value)
